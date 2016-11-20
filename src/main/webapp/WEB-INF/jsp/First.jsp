@@ -1,13 +1,15 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="vz" uri="/WEB-INF/vizr.tld"%>
 <html>
 
 <head>
 
 </head>
 <script src="/Chart.bundle.js"></script>
+<script src="/vizr.js"></script>
 <body>
 	<h1>Spring MVC Hello World Example</h1>
 
@@ -16,39 +18,26 @@
 		<c:out value='${name}' />
 	</h2>
 
-	<div style="padding: 30px; border: 1px solid black; width: 50%; resize: both; overflow: auto;">
-		<canvas id="myChart2" width="100%" height="100%" />
+	<div id="charts"
+		style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: flex-start; align-items: center;">
+		<div style="width: 100%">
+			<div
+				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px;">
+				<vz:line />
+			</div>
+		</div>
+		<div style="width: 50%">
+			<div
+				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px;">
+				<vz:line />
+			</div>
+		</div>
+		<div style="width: 50%">
+			<div
+				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px;">
+				<vz:line />
+			</div>
+		</div>
 	</div>
-	<div style="padding: 30px; border: 1px solid black; width: 50%; resize: both; overflow: auto;">
-		<canvas id="myChart" width="100%" height="100%" />
-	</div>
-	<script>
-
-	function loadChart(url, chart){
-
-		var xmlhttp = new XMLHttpRequest();
-
-		xmlhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var myArr = JSON.parse(this.responseText);
-				myFunction(myArr, chart);
-			}
-		};
-		
-
-		xmlhttp.open("GET", url, true);
-		xmlhttp.setRequestHeader("Accept","application/json");
-		xmlhttp.setRequestHeader("Content-Type","application/json")
-		xmlhttp.send();
-	}
-
-		function myFunction(arr, chart) {
-			var ctx2 = document.getElementById(chart);
-			var myChart2 = new Chart(ctx2, arr);
-		}
-		
-		loadChart('/lineChart','myChart');
-		loadChart('/lineChart','myChart2');
-	</script>
 </body>
 </html>
