@@ -22,7 +22,7 @@
 		style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: flex-start; align-items: center;">
 		<div style="width: 100%">
 			<div
-				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px;">
+				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px; height:400px;">
 				<vz:line />
 			</div>
 		</div>

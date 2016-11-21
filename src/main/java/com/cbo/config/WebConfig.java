@@ -1,4 +1,4 @@
-package com.cbo.html;
+package com.cbo.config;
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;

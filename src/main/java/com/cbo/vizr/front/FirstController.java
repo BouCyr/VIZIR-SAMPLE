@@ -1,4 +1,4 @@
-package com.cbo.html;
+package com.cbo.vizr.front;
 
 import java.util.Map;
 

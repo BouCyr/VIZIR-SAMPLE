@@ -1,5 +1,7 @@
 package com.cbo.vizr;
 
+import com.cbo.vizr.rest.charts.Chart;
+
 public abstract class BaseChart implements Chart {
 
 	private ChartType chartType;
