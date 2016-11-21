@@ -1,10 +1,11 @@
 package com.cbo.vizr.rest.charts;
 
+import com.cbo.vizr.BaseChart;
+import com.cbo.vizr.ChartType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class LineChart {
+public class LineChart extends BaseChart {
 
-	private String type = "line";
 	private String name;
 	private Data data = new Data();
 	private Options options = new Options();
@@ -14,18 +15,13 @@ public class LineChart {
 	}
 	public LineChart(String name){
 		super();
+		
+		this.setChartType(ChartType.BAR);
 		this.setName(name);
 	}
 	
 
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
 
 	public Data getData() {
 		return data;
