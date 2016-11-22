@@ -1,4 +1,4 @@
-package com.cbo.html.school;
+package com.cbo.school;
 
 public enum Result {
 
@@ -12,7 +12,13 @@ public enum Result {
 	public static Result fromGrades(Grades grd){
 		
 		
-		float avg = (grd.getGeo()+grd.getHistory()+grd.getMath()+grd.getSport())/5.0f;
+		float avg = (grd.getGeo()+grd.getHistory()+grd.getMath()+grd.getSport())/4.0f;
+		
+		
+		//to 0.01
+		avg = (Math.round(100.0f*avg))/100.0f;
+		grd.setAverage(avg);
+		
 		
 		if(avg >= 16.0f)
 			return Result.OUTSTANDING;
