@@ -23,19 +23,19 @@
 		<div style="width: 100%">
 			<div
 				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px; height:400px;">
-				<vz:line />
+				<vz:line type="pie" />
 			</div>
 		</div>
 		<div style="width: 50%">
 			<div
 				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px;">
-				<vz:line />
+				<vz:line type="line" />
 			</div>
 		</div>
 		<div style="width: 50%">
 			<div
 				style="border: 1px solid gray; margin: 5px; width: auto; border-radius: 10px;">
-				<vz:line />
+				<vz:line type="bar" />
 			</div>
 		</div>
 	</div>

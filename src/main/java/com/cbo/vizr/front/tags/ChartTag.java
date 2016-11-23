@@ -7,10 +7,13 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
+import com.cbo.vizr.ChartType;
+
 public class ChartTag extends SimpleTagSupport {
 
 	private String url ="/chart";
 	private String name = UUID.randomUUID().toString();
+	private String type = ChartType.LINE.getType();
 	
 	@Override
 	public void doTag() throws JspException, IOException {
@@ -20,7 +23,7 @@ public class ChartTag extends SimpleTagSupport {
 	    	url="/"+url;
 	    
 	    out.println("<canvas id=\""+name+"\" />");
-	    out.println("<script>loadChart('/vizr"+url+"', '"+name+"');</script>");
+	    out.println("<script>loadChart('/vizr"+url+"/"+type+"', '"+name+"');</script>");
 	}
 
 	public String getUrl() {
@@ -37,6 +40,14 @@ public class ChartTag extends SimpleTagSupport {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	

@@ -1,13 +1,17 @@
 package com.cbo.school.reports;
 
 import com.cbo.school.Result;
+import com.cbo.vizr.reports.LineType;
 
-public class MentionReportLine {
-	
+@LineType(MentionReportLine.class)
+public class MentionReport {
+
 	private Result result;
 	private Long count;
 	
-	public MentionReportLine(Result result, Long count) {
+	
+	
+	public MentionReport(Result result, Long count) {
 		super();
 		this.result = result;
 		this.count = count;
@@ -27,6 +31,4 @@ public class MentionReportLine {
 	}
 	
 	
-	
-
 }

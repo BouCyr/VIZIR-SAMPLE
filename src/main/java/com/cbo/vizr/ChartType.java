@@ -1,7 +1,9 @@
 package com.cbo.vizr;
 
 public enum ChartType {
-	BAR("bar");
+	BAR("bar"),
+	PIE("pie"), 
+	LINE("line");
 
 	private String type;
 

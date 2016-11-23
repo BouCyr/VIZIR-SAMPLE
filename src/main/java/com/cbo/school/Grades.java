@@ -13,7 +13,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-@Entity
+@Entity(name="grades")
 public class Grades {
 
 	@Id
@@ -22,11 +22,11 @@ public class Grades {
 	
 	@Basic
 	@NotNull
-	private Integer region_id;
+	private Integer region;
 	
 	@Basic
 	@NotNull
-	private Integer school_id;
+	private Integer school;
 	
 	@Min(0)
 	@Max(20)
@@ -60,8 +60,8 @@ public class Grades {
 	public Grades(Integer id, Integer region_id, Integer school_id, Float math, Float geo, Float history, Float sport, Gender gender) {
 		super();
 		this.id = id;
-		this.region_id = region_id;
-		this.school_id = school_id;
+		this.region = region_id;
+		this.school = school_id;
 		this.math = math;
 		this.geo = geo;
 		this.history = history;
@@ -77,20 +77,20 @@ public class Grades {
 		this.id = id;
 	}
 
-	public Integer getRegion_id() {
-		return region_id;
+	public Integer getRegion() {
+		return region;
 	}
 
-	public void setRegion_id(Integer region_id) {
-		this.region_id = region_id;
+	public void setRegion(Integer region) {
+		this.region = region;
 	}
 
-	public Integer getSchool_id() {
-		return school_id;
+	public Integer getSchool() {
+		return school;
 	}
 
-	public void setSchool_id(Integer school_id) {
-		this.school_id = school_id;
+	public void setSchool(Integer school_id) {
+		this.school = school_id;
 	}
 
 	public Float getMath() {

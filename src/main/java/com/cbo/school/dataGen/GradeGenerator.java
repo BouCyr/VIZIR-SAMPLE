@@ -94,11 +94,11 @@ public class GradeGenerator {
 		
 		//effect of origin region
 		grades = region.effect(grades);
-		grades.setRegion_id(region.id);
+		grades.setRegion(region.id);
 		
 		//effect of school
 		grades = school.effect(grades);
-		grades.setSchool_id(school.id);
+		grades.setSchool(school.id);
 		
 		//effect of gender
 		grades = gender.effect(grades);

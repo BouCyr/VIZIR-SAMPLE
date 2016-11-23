@@ -4,13 +4,12 @@ import java.lang.reflect.Method;
 import java.util.Collection;
 
 import com.cbo.vizr.reports.lines.LineVariable;
-import com.cbo.vizr.reports.lines.ReportLine;
 
-public abstract class Variable{
+public abstract class Variable<U>{
 
 	private String name;
 
-	public Variable(String name, Collection<ReportLine> sourceData){
+	public Variable(String name, Collection<U> sourceData){
 		super();
 		this.name = name;
 		init(sourceData);
@@ -18,7 +17,7 @@ public abstract class Variable{
 
 	private Method getter = null;
 
-	protected Method getGetter(ReportLine line){
+	protected Method getGetter(U line){
 		if(getter == null){
 			Method[] methods = line.getClass().getMethods();
 
@@ -35,9 +34,9 @@ public abstract class Variable{
 		return getter;
 	}
 	
-	public abstract void init(Collection<ReportLine> source);
+	public abstract void init(Collection<U> source);
 
-	public abstract Collection<ReportLine> filter(Collection<ReportLine> source);
+	public abstract Collection<U> filter(Collection<U> source);
 
 }
 

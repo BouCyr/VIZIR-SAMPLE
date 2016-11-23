@@ -1,4 +1,4 @@
-package com.cbo.vizr.rest.charts;
+package com.cbo.vizr;
 
 public class Options {
 	private boolean responsive = true;

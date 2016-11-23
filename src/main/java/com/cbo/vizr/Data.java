@@ -1,4 +1,4 @@
-package com.cbo.vizr.rest.charts;
+package com.cbo.vizr;
 
 import java.util.ArrayList;
 import java.util.List;

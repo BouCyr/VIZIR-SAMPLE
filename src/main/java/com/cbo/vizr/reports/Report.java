@@ -1,33 +1,35 @@
 package com.cbo.vizr.reports;
 
-import java.util.ArrayList;
+import java.lang.reflect.Method;
 import java.util.Collection;
 
-import com.cbo.vizr.reports.lines.ReportLine;
+import com.cbo.vizr.reports.lines.LineVariable;
 
-public class Report<U extends ReportLine> {
 
-	private Collection<U> sourceData;
+public abstract class Report<U> {
+
 	
-	public Report(Collection<U> data){
+	public Report(){
 		
-	}
-	
-	public Collection<U> getSourceData(){
-		return sourceData;
-	}
-	
-	
-	
-	
-	public Collection<ReportLine> applyVariables(Collection<Variable> variables){
+		if(!this.getClass().isAnnotationPresent(LineType.class))
+			throw new RuntimeException("REPORTS MUST BE ANNOTATED WITH @ReportType.");
 		
-		Collection<ReportLine> filtered = new ArrayList<>(sourceData);
+		Class<?> reportType = this.getClass().getAnnotation(LineType.class).value();
 		
-		for(Variable v : variables  ){
-			filtered = v.filter(filtered);
+		
+		for(Method m : reportType.getMethods()){
+			if(m.isAnnotationPresent(LineVariable.class)){
+				
+			}
 		}
-	
-		return filtered ;
+		
+		
 	}
+	
+	public abstract Collection<U> getData(Collection<Variable<U>> variables);
+	
+	
+	
+	
+
 }

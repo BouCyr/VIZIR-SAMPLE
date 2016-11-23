@@ -1,23 +1,59 @@
 package com.cbo.vizr;
 
-import com.cbo.vizr.rest.charts.Chart;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public abstract class BaseChart implements Chart {
+public class BaseChart  {
 
 	private ChartType chartType;
 	
+	private String name;
+	private Data data = new Data();
+	private Options options = new Options();
 	
-	@Override
+	protected BaseChart(){
+		super();
+	}
+	public BaseChart(String name){
+		super();
+		
+		this.setChartType(ChartType.BAR);
+		this.setName(name);
+	}
+	
+
+
+
+	public Data getData() {
+		return data;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+	
+	@JsonIgnore
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public Options getOptions() {
+		return options;
+	}
+	
+	public void setOptions(Options options) {
+		this.options = options;
+	}
+	
 	public ChartType getChartType() {
 		return chartType ;
 	}
 	
 	public void setChartType(ChartType type){
 		this.chartType = type;
-	}
-	
-	protected BaseChart(){
-		super();
 	}
 	
 	public BaseChart(ChartType type){

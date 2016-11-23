@@ -7,12 +7,24 @@ import org.postgresql.Driver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-//@Configuration
+@Configuration
 public class DataBaseConfig {
 
-   /* @Bean
+    @Bean
     @Primary
+    public DataSource inMemory(){
+    	EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+		return builder
+			.setType(EmbeddedDatabaseType.HSQL) //.H2 or .DERBY
+			//.addScript("db/sql/create-db.sql")
+			//.addScript("db/sql/insert-data.sql")
+			.build();
+    }
+    
+    
     public DataSource dataSource() throws ClassNotFoundException {
     	
         //String dbUrl = System.getenv("JDBC_DATABASE_URL");
@@ -33,6 +45,6 @@ public class DataBaseConfig {
         basicDataSource.setInitialSize(1);
 
         return basicDataSource;
-    }*/
+    }
 	
 }

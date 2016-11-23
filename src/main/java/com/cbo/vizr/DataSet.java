@@ -1,11 +1,11 @@
-package com.cbo.vizr.rest.charts;
+package com.cbo.vizr;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DataSet {
 	private String label;
-	private List<Integer> data = new ArrayList<>();
+	private List<Double> data = new ArrayList<>();
 	/*private List<String> backgroundColor = new ArrayList<>();
 	private List<String> borderColor = new ArrayList<>();*/
 	private Integer borderWidth = 1;
@@ -19,10 +19,10 @@ public class DataSet {
 	public void setLabel(String label) {
 		this.label = label;
 	}
-	public List<Integer> getData() {
+	public List<Double> getData() {
 		return data;
 	}
-	public void setData(List<Integer> data) {
+	public void setData(List<Double> data) {
 		this.data = data;
 	}
 	/*public List<String> getBackgroundColor() {

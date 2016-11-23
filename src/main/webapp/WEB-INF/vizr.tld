@@ -14,5 +14,8 @@
 		<attribute>
 			<name>name</name>
 		</attribute>
+		<attribute>
+			<name>type</name>
+		</attribute>
 	</tag>
 </taglib>
