@@ -1,6 +1,6 @@
 package com.cbo.school.dataGen;
 
-import com.cbo.school.Grades;
+import com.cbo.school.data.Grade;
 
 public abstract class HasEffect {
 
@@ -11,6 +11,6 @@ public abstract class HasEffect {
 		this.id = id;
 	}
 	
-	public abstract Grades effect(Grades original);
+	public abstract Grade effect(Grade original);
 	
 }

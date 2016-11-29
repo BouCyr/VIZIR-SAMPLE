@@ -1,6 +1,6 @@
 package com.cbo.school.dataGen;
 
-import com.cbo.school.Grades;
+import com.cbo.school.data.Grade;
 
 public class HasGeneralEffect extends HasEffect {
 
@@ -16,7 +16,7 @@ public class HasGeneralEffect extends HasEffect {
 
 
 	@Override
-	public Grades effect(Grades original) {
+	public Grade effect(Grade original) {
 		original.setMath(original.getMath() * this.factor);
 		original.setMath(original.getGeo() * this.factor);
 		original.setMath(original.getHistory() * this.factor);

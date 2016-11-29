@@ -1,0 +1,11 @@
+fieldset{
+	border: 1px solid gray; 
+	margin: 5px; 
+	width: auto; 
+	border-radius: 10px; 
+	padding-bottom: 30px;
+}
+
+#test{
+	height:400px;
+}

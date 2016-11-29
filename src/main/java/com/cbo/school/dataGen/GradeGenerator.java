@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import com.cbo.school.Gender;
-import com.cbo.school.Grades;
-import com.cbo.school.Result;
+import com.cbo.school.data.Gender;
+import com.cbo.school.data.Grade;
+import com.cbo.school.data.Result;
 
 public class GradeGenerator {
 
 
-	public static Collection<Grades> generateGrades(int nb){
+	public static Collection<Grade> generateGrades(int nb){
 
 		
 
@@ -51,7 +51,7 @@ public class GradeGenerator {
 			
 		}
 		
-		Collection<Grades> allGrades = new ArrayList<>();
+		Collection<Grade> allGrades = new ArrayList<>();
 		
 		for(int i = 0 ; i < nb ; i++){
 			
@@ -60,11 +60,11 @@ public class GradeGenerator {
 			HasEffect gender = random(genders);
 			
 			
-			Grades baseStudent = generateStudent(i, region, school, gender);//depends only of external factors
+			Grade baseStudent = generateStudent(i, region, school, gender);//depends only of external factors
 			//i.e every male student of a specific shcool will hacve the same grades
 			
 			
-			Grades specificStudent = randomEffect(i).effect(baseStudent);//the specific result, representing
+			Grade specificStudent = randomEffect(i).effect(baseStudent);//the specific result, representing
 			//the students specific performances on the exam day.
 
 			//round to nearest 0.5
@@ -80,7 +80,7 @@ public class GradeGenerator {
 	}
 
 
-	private static void round(Grades specificStudent) {
+	private static void round(Grade specificStudent) {
 		specificStudent.setMath(semiRound(specificStudent.getMath()));
 		specificStudent.setGeo(semiRound(specificStudent.getGeo()));
 		specificStudent.setHistory(semiRound(specificStudent.getHistory()));
@@ -88,9 +88,9 @@ public class GradeGenerator {
 	}
 
 
-	private static Grades generateStudent(int id, HasEffect region, HasEffect school, HasEffect gender ){
+	private static Grade generateStudent(int id, HasEffect region, HasEffect school, HasEffect gender ){
 		
-		Grades grades = new Grades(id ,0,0,11.0f,11.0f,11.0f,11.0f,Gender.MALE);
+		Grade grades = new Grade(id ,0,0,11.0f,11.0f,11.0f,11.0f,Gender.MALE);
 		
 		//effect of origin region
 		grades = region.effect(grades);

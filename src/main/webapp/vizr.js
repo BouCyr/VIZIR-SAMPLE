@@ -5,7 +5,7 @@ function loadChart(url, chart){
 	xmlhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var myArr = JSON.parse(this.responseText);
-			myFunction(myArr, chart);
+			updateChart(myArr, chart);
 		}
 	};
 
@@ -16,7 +16,7 @@ function loadChart(url, chart){
 	xmlhttp.send();
 }
 
-function myFunction(arr, chart) {
-	var ctx2 = document.getElementById(chart);
-	var myChart2 = new Chart(ctx2, arr);
+function updateChart(arr, chart) {
+	var ctx = document.getElementById(chart);
+	var myChart2 = new Chart(ctx, arr);
 }

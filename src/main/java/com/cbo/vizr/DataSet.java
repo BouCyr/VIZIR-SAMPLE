@@ -10,8 +10,8 @@ public class DataSet {
 	private List<String> borderColor = new ArrayList<>();*/
 	private Integer borderWidth = 1;
 	
-	private String backgroundColor;
-	private String borderColor;
+	private List<String> backgroundColor;
+	private List<String> borderColor;
 	
 	public String getLabel() {
 		return label;
@@ -43,16 +43,16 @@ public class DataSet {
 	public void setBorderWidth(Integer borderWidth) {
 		this.borderWidth = borderWidth;
 	}
-	public String getBackgroundColor() {
+	public List<String> getBackgroundColor() {
 		return backgroundColor;
 	}
-	public void setBackgroundColor(String backgroundColor) {
+	public void setBackgroundColor(List<String> backgroundColor) {
 		this.backgroundColor = backgroundColor;
 	}
-	public String getBorderColor() {
+	public List<String> getBorderColor() {
 		return borderColor;
 	}
-	public void setBorderColor(String borderColor) {
+	public void setBorderColor(List<String> borderColor) {
 		this.borderColor = borderColor;
 	}
 	

@@ -9,13 +9,11 @@
 		<tag-class>com.cbo.vizr.front.tags.ChartTag</tag-class>
 		<body-content>scriptless</body-content>
 		<attribute>
-			<name>url</name>
+			<name>load</name>
 		</attribute>
 		<attribute>
 			<name>name</name>
-		</attribute>
-		<attribute>
-			<name>type</name>
+			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 	</tag>
 </taglib>
