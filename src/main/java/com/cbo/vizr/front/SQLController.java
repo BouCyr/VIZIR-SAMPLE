@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cbo.vizr.ChartType;
 import com.cbo.vizr.charts.SqlChart;
 import com.cbo.vizr.charts.SqlChartRepo;
 
@@ -40,6 +41,7 @@ public class SQLController {
 		String sql = "";
 
 		mav.addObject("chart", new SqlChart());
+		mav.addObject("types", ChartType.values());
 
 		return treatSQL(mav, sql);
 	}
@@ -57,7 +59,7 @@ public class SQLController {
 		chart.setSql(sql.trim());
 		
 		mav.addObject("chart", chart);
-		
+		mav.addObject("types", ChartType.values());
 
 
 		return treatSQL(mav, sql);
@@ -67,7 +69,7 @@ public class SQLController {
 	public ModelAndView save(Map<String, Object> model,
 			@ModelAttribute("chart") SqlChart chart) throws ServletException{
 
-		ModelAndView mav = new ModelAndView("SQL") ;
+		ModelAndView mav = new ModelAndView("charts") ;
 
 		chart.setSql(chart.getSql().trim());
 		
@@ -81,6 +83,7 @@ public class SQLController {
 		treatSQL(mav, chart.getSql());
 		
 		mav.addObject("chart", chart);
+		mav.addObject("types", ChartType.values());
 		
 		mav.addObject("chartName", chart.getName());
 		

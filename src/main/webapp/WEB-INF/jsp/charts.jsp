@@ -9,40 +9,64 @@
 
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Existing charts</title>
-	<link rel="stylesheet" type="text/css" href="/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Existing charts</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <script src="/Chart.bundle.js"></script>
 <script src="/vizr.js"></script>
 
 <script>
-function displayChart(){
-	var selectName = document.getElementById('chartName').value;
-	
-	loadChart('/vizr/chart/'+selectName, 'test');
-	
-}
+	function displayChart(selectName ) {
+		
+		var fieldset = document.getElementById('fs');
+		var canvas = document.getElementById('test');
+		fieldset.removeChild(canvas);
+
+		var newCanvas = document.createElement("canvas");
+		newCanvas.id = 'test';
+		fieldset.appendChild(newCanvas);
+
+		loadChart('/vizr/chart/' + selectName, 'test');
+
+		document.getElementById('chartName').innerHTML=selectName;
+		
+	}
 </script>
 <body>
 
-	<div id="select">
-	
-	<form:select id="chartName" path="chartName" items="${chartNames}" onchange="displayChart()"/>
-	
-	</div>
-	<div id="charts"
-		style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; align-content: flex-start; align-items: center;">
-		<div style="flex-grow: 10;">
-			<fieldSet style="height: 400px;">
-				<vz:line name="test" load="false" />
-			</fieldSet>
+	<div id="main">
+		<div id="select">
+
+
+			<c:forEach var="provider" items="${providers}">
+				<p class="provider">
+					<c:out value="${provider.name}" />
+				</p>
+
+				<c:forEach var="chart" items="${provider.charts}">
+					<p class="chart" onclick="displayChart('${chart}');">
+						<c:out value="${chart}" />
+					</p>
+				</c:forEach>
+			</c:forEach>
+
+
+
+		</div>
+		<div id="charts">
+			
+			<div style="flex-grow: 10;">
+				
+				<fieldSet style="height: 400px;" id="fs">
+					<legend id="chartName"></legend>
+					<vz:line name="test" load="false" />
+				</fieldSet>
+			</div>
 		</div>
 	</div>
 
 </body>
 
-<script>
-displayChart();
-</script>
+
 </html>

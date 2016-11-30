@@ -7,13 +7,13 @@ import com.cbo.vizr.charts.Palette;
 
 public class PlainPalette extends Palette {
 
-private Color c;
-	
+	private Color c;
+
 
 
 	public PlainPalette(Color c) {
 		super();
-		this.c =c ;
+		this.c=c;
 	}
 
 
@@ -21,14 +21,16 @@ private Color c;
 	@Override
 	public void applyPalette(DataSet ds) {
 
-		
+
 		ds.setBackgroundColor(new ArrayList<>());
 		ds.setBorderColor(new ArrayList<>());
-		
-		
-		ds.getData().forEach(d -> ds.getBackgroundColor().add(c.toRgba()));
-		ds.getData().forEach(d -> ds.getBorderColor().add(c.toRgb()));
+
+
+		for(@SuppressWarnings("unused") Double d : ds.getData()){
+			ds.getBackgroundColor().add(c.toRgba());
+			ds.getBorderColor().add(c.toRgb());
+		}
 	}
-	
-	
+
+
 }

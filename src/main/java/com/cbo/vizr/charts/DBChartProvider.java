@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -18,14 +21,14 @@ import com.cbo.vizr.Data;
 import com.cbo.vizr.DataSet;
 import com.cbo.vizr.RestChart;
 import com.cbo.vizr.charts.palettes.Color;
-import com.cbo.vizr.charts.palettes.PlainPalette;
+import com.cbo.vizr.charts.palettes.GradientPalette;
 
 @Component
 public class DBChartProvider implements ChartProvider {
 
 	@Autowired
 	SqlChartRepo repo;
-	
+
 
 	@Autowired
 	DataSource source;
@@ -33,19 +36,24 @@ public class DBChartProvider implements ChartProvider {
 	public SqlChart findByName(String name) {
 		return repo.findByName(name);
 	}
-	
+
+	@Override
+	public RestChart getChart(String name) throws ChartCreationException{
+		return fromSQLChart(findByName(name));
+	}
+
 	@Override
 	public Collection<RestChart> getCharts() throws ChartCreationException {
 		ArrayList<RestChart> chartsInDb = new ArrayList<>();
-		
-		
+
+
 		for(SqlChart sqlChart : repo.findAll()){
-			
+
 			chartsInDb.add(fromSQLChart(sqlChart));
 		}
-			
 
-		
+
+
 		return chartsInDb;
 	}
 
@@ -54,11 +62,16 @@ public class DBChartProvider implements ChartProvider {
 		return "Database store";
 	}
 
-	
+	@Override
+	public List<String> getChartNames() {
+		return repo.findNames();
+	}
+
+
 	public RestChart fromSQLChart(SqlChart chartFromDB) throws ChartCreationException {
 		RestChart chart = new RestChart(chartFromDB.getName());
 		chart.setType(chartFromDB.getType());
-		
+
 		try {
 			chart.setData(treatSQL(chartFromDB.getSql(), chartFromDB.getAxisX(), chartFromDB.getAxisY()));
 		} catch (SQLException e) {
@@ -66,23 +79,31 @@ public class DBChartProvider implements ChartProvider {
 		}
 
 
-		PlainPalette palette = new PlainPalette(new Color(54, 162, 235));
-		//DataPalette palette = new DataPalette(new Color(255, 0, 0), new Color(0, 255, 0));
-		
+		GradientPalette palette = new GradientPalette(new Color(255, 205, 46, 0.8f), new Color(204, 34, 0, 0.8f));
+		//PlainPalette palette = new PlainPalette(new Color(244, 121, 32, 0.8f));
 		palette.applyPalette(chart.getData().getDatasets().get(0));
+		
 
-		//ds.setBackgroundColor("rgba(255, 99, 132, 0.2)");
-		//ds.setBorderColor("rgba(255,99,132,1)");
 		return chart;
 	}
 
-	private Data treatSQL(String sql, String axisX, String axisY) throws SQLException {
+	private Data treatSQL(String sql, String axisX, List<String> axisY) throws SQLException {
 
 		Data data = new Data();
-		
-		DataSet dataSet=  new DataSet();
-		dataSet.setLabel(axisY);
-		data.getDatasets().add(dataSet);
+
+		if(StringUtils.isEmpty(sql) || StringUtils.isEmpty(axisX) || axisY == null || axisY.size() == 0 ){
+			return data;
+		}
+
+
+		Map<String, DataSet> dataSetsByName = new HashMap<>();
+		for(String y : axisY){
+			DataSet dataSet=  new DataSet();
+			dataSet.setLabel(y);
+
+			data.getDatasets().add(dataSet);
+			dataSetsByName.put(y, dataSet);
+		}
 
 		if(StringUtils.isEmpty(sql)){
 			throw new SQLException("SQL cannot be null.");
@@ -99,9 +120,14 @@ public class DBChartProvider implements ChartProvider {
 			while(rs.next()){
 
 				String x = rs.getString(axisX);
-				Double y = rs.getDouble(axisY);
+				
+				
+				for(String y : axisY){
+					Double yValue = rs.getDouble(y);
+					dataSetsByName.get(y).getData().add(yValue);
+				}
 				data.getLabels().add(x);
-				dataSet.getData().add(y);
+				
 
 			}
 
@@ -115,14 +141,15 @@ public class DBChartProvider implements ChartProvider {
 				if(con!=null)
 					con.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw e;
 			}
 		}
-		
+
 		return data;
 
 	}
+
+
 
 
 }

@@ -1,6 +1,9 @@
 package com.cbo.vizr.charts;
 
+import java.util.List;
+
 import javax.persistence.Basic;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +25,8 @@ public class SqlChart {
 	@Basic
 	private String axisX;
 	
-	@Basic
-	private String axisY ;
+	@ElementCollection
+	private List<String> axisY ;
 	
 	@Basic
 	private String sql ;
@@ -56,11 +59,11 @@ public class SqlChart {
 		this.axisX = axisX;
 	}
 
-	public String getAxisY() {
+	public List<String> getAxisY() {
 		return axisY;
 	}
 
-	public void setAxisY(String axisY) {
+	public void setAxisY(List<String> axisY) {
 		this.axisY = axisY;
 	}
 

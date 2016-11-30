@@ -20,6 +20,7 @@ import com.cbo.school.dataGen.GradeGenerator;
 @RequestMapping(consumes=MediaType.APPLICATION_JSON, 
 	produces=MediaType.APPLICATION_JSON, 
 	path="/school")
+
 public class SchoolWs {
 
 	@Autowired 

@@ -2,12 +2,12 @@ package com.cbo.school.data;
 
 public enum Result {
 
-	FAILED,
-	REPECHAGE,
-	OK,
-	GOOD,
-	EXCELLENT,
-	OUTSTANDING;
+	F,
+	E,
+	D,
+	C,
+	B,
+	A;
 	
 	public static Result fromGrades(Grade grd){
 		
@@ -21,16 +21,16 @@ public enum Result {
 		
 		
 		if(avg >= 16.0f)
-			return Result.OUTSTANDING;
+			return Result.A;
 		else if(avg >= 14.0f)
-			return Result.EXCELLENT;
+			return Result.B;
 		else if(avg >= 12.0f)
-			return Result.GOOD;
+			return Result.C;
 		else if(avg >= 10.0f)
-			return Result.OK;
-		else if(avg >= 9.5f)
-			return Result.REPECHAGE;
+			return Result.D;
+		else if(avg >= 8.0f)
+			return Result.E;
 		else 
-			return Result.FAILED;
+			return Result.F;
 	}
 }

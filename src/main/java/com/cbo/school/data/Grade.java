@@ -14,7 +14,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity(name="grades")
-public class Grade {
+public class Grade implements Comparable<Grade> {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -154,6 +154,11 @@ public class Grade {
 
 		return MessageFormat.format("{0} : {1}={2} (maths:{3},history:{4},geo:{5},sport:{6})",
 				id,average, result, math, history,geo, sport);
+	}
+
+	@Override
+	public int compareTo(Grade o) {
+		return this.getAverage().compareTo(o.getAverage());
 	}
 	
 	

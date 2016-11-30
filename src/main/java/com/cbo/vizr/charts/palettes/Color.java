@@ -42,4 +42,20 @@ public class Color {
 	public float A(){
 		return a;
 	}
+	
+	public static Color interpolate(Color one, Color two, float ratio){
+		
+		float rof = ((float) one.r)*ratio;
+		float gof = ((float) one.g)*ratio;
+		float bof = ((float) one.b)*ratio;
+		
+		float rtf = ((float) two.r)*(1.0f-ratio);
+		float gtf = ((float) two.g)*(1.0f-ratio);
+		float btf = ((float) two.b)*(1.0f-ratio);
+		
+		return new Color( (int) (rof + rtf), (int) (gof+gtf), (int) (bof+btf), one.a);
+		
+		
+		
+	}
 }

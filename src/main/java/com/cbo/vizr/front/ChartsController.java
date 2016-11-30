@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cbo.vizr.ChartProvider;
-import com.cbo.vizr.RestChart;
 import com.cbo.vizr.charts.ChartCreationException;
+import com.cbo.vizr.front.charts.ProviderDisplay;
 
 
 @Controller
@@ -30,21 +30,14 @@ public class ChartsController {
 
 		ModelAndView mav = new ModelAndView("charts") ;
 		
-		List<RestChart> charts = new ArrayList<>();
+		List<ProviderDisplay> charts = new ArrayList<>();
 		
 		for(ChartProvider provider : allProviders){
-			charts.addAll(provider.getCharts());
+			charts.add(new ProviderDisplay(provider));
 		}
 		
+		mav.addObject("providers", charts);
 		
-		ArrayList<String> chartNames = new ArrayList<>();
-		charts.forEach(c -> chartNames.add(c.getName())); 
-		
-		String firstChart = chartNames.get(0);
-		
-		
-		mav.addObject("chartName", firstChart);
-		mav.addObject("chartNames", chartNames);
 		
 		return mav;
 	}

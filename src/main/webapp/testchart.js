@@ -1,5 +1,5 @@
 var xAxis = null;
-var yAxis = null;
+var yAxis = [];
 
 function xChanged( radio){
 	
@@ -8,8 +8,17 @@ function xChanged( radio){
 	fromForm();
 }
 
-function yChanged( radio){
-	yAxis = radio.value;
+function yChanged( checkBox){
+	var newYAxis = checkBox.value;
+	
+	var formerIndex = yAxis.indexOf(newYAxis);
+	if (formerIndex > -1) {
+		yAxis.splice(formerIndex, 1);
+	}
+	
+	if(checkBox.checked){
+		yAxis.push(newYAxis);
+	}
 	
 	fromForm();
 }

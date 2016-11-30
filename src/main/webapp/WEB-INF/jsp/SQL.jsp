@@ -7,86 +7,93 @@
 <html>
 
 <head>
-	<title>Create chart</title>
-	<link rel="stylesheet" type="text/css" href="/style.css">
-	<script src="/Chart.bundle.js"></script>
-	<script src="/vizr.js"></script>
-	<script src="/testchart.js"></script>
+<title>Create chart</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<script src="/Chart.bundle.js"></script>
+<script src="/vizr.js"></script>
+<script src="/testchart.js"></script>
 </head>
 
 
 
 
 <body>
-	<fieldset id="sqlFS">
-		<legend>Request</legend>
-		<form id="sqlForm" action="/sql" method="POST">
-			<textarea name="sql" rows="8" cols="90">
+	<div id="main">
+		<div id="select"></div>
+		<div id="chartCreation">
+			<fieldset id="sqlFS">
+				<legend>Request</legend>
+				<form id="sqlForm" action="/sql" method="POST">
+					<textarea name="sql" rows="8" cols="90">
 			<c:out value='${SQL}' />
 		</textarea>
-			<input type="submit" value="GO" /><br />
+					<input type="submit" value="GO" /><br />
 
 
-			<c:out value='${nbRows}' />
-			rows.<br />
-		</form>
-	</fieldset>
+					<c:out value='${nbRows}' />
+					rows.<br />
+				</form>
+			</fieldset>
 
-	<fieldset id="chart">
-		<legend>Chart</legend>
-		<form:form method="post" modelAttribute="chart" action="/saveChart">
-			<form:input type="hidden" name="sql" path="sql" />
-			<table>
-				<tr>
-					<th>Column</th>
-					<c:forEach items='${colNames}' var="name">
-						<th><c:out value='${name}' /></th>
-					</c:forEach>
-				</tr>
+			<form:form method="post" modelAttribute="chart" action="/saveChart">
+				<fieldset id="charts">
+					<legend>Rows</legend>
+					
+						<form:input type="hidden" name="sql" path="sql" />
+						<table>
+							<tr>
+								<td class="legend">Column</td>
+								<c:forEach items='${colNames}' var="name">
+									<th><c:out value='${name}' /></th>
+								</c:forEach>
+							</tr>
 
-				<tr>
-					<th>X Axis</th>
-					<c:forEach items='${colNames}' var="name">
-						<td><form:radiobutton onclick="xChanged(this);" path="axisX"
-								value="${name}" /><br></td>
-					</c:forEach>
-				</tr>
+							<tr>
+								<td class="legend">X Axis</td>
+								<c:forEach items='${colNames}' var="name">
+									<td><form:radiobutton onclick="xChanged(this);"
+											path="axisX" value="${name}" /><br></td>
+								</c:forEach>
+							</tr>
 
-				<tr>
-					<th>Y Axis</th>
-					<c:forEach items='${colNames}' var="name">
-						<td><form:radiobutton onclick="yChanged(this);" path="axisY"
-								value="${name}" /><br></td>
-					</c:forEach>
-				</tr>
+							<tr>
+								<td class="legend">Y Axis</td>
+								<c:forEach items='${colNames}' var="name">
+									<td><form:checkbox onclick="yChanged(this);" path="axisY"
+											value="${name}" /><br></td>
+								</c:forEach>
+							</tr>
 
-				<c:forEach items='${lines}' var="line">
-					<tr>
-						<td />
-						<c:forEach items='${line}' var="cell">
-							<td><c:out value='${cell}' /></td>
-						</c:forEach>
-					</tr>
+							<c:forEach items='${lines}' var="line">
+								<tr>
+									<td class="legend"></td>
+									<c:forEach items='${line}' var="cell">
+										<td><c:out value='${cell}' /></td>
+									</c:forEach>
+								</tr>
 
-				</c:forEach>
-			</table>
+							</c:forEach>
+						</table>
 
-			<form:select id="type" path="type" onchange="typeChanged();">
-				<option value="bar">Bars</option>
-				<option value="line">Lines</option>
-				<option value="pie">Pie</option>
-			</form:select>
-			<br />
+						<form:select id="type" path="type" onchange="typeChanged();">
+							<form:options items="${types}" itemValue="type"></form:options>
+						</form:select>
+						<br />
 
-		</form:form>
-	</fieldset>
+					
+				</fieldset>
 
 
-	<div id="charts"">
-		<div>
-			<fieldSet id="fs">
-				<canvas id="test" />
-			</fieldSet>
+				<div id="charts"">
+					<fieldSet id="fs">
+						<canvas id="test" />
+					</fieldSet>
+				</div>
+				<div id="save">
+					<form:input path="name" />
+					<input type="submit" value="SAUVER" />
+				</div>
+			</form:form>
 		</div>
 
 	</div>

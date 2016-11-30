@@ -37,9 +37,9 @@ public class ChartWS {
 
 
 		for(ChartProvider provider : allProviders){
-			for(RestChart chart : provider.getCharts()){
-				if(chart.getName().equals(name)){
-					return chart;
+			for(String chartName : provider.getChartNames()){
+				if(chartName.equals(name)){
+					return provider.getChart(chartName);
 				}
 
 			}
