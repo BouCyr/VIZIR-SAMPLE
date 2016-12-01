@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.cbo")
-@EnableJpaRepositories("com.cbo")
-@EntityScan("com.cbo")
+@ComponentScan({"com.cbo","cbo.vizr"})
+@EnableJpaRepositories({"com.cbo","cbo.vizr"})
+@EntityScan({"com.cbo","cbo.vizr"})
 public class DatadisplayApplication {
 
 	public static void main(String[] args) {

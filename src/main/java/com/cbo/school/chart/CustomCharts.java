@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 import com.cbo.school.data.Gender;
 import com.cbo.school.data.Grade;
 import com.cbo.school.data.GradesRepo;
-import com.cbo.vizr.ChartProvider;
-import com.cbo.vizr.ChartType;
-import com.cbo.vizr.DataSet;
-import com.cbo.vizr.RestChart;
-import com.cbo.vizr.charts.ChartCreationException;
-import com.cbo.vizr.charts.palettes.Color;
-import com.cbo.vizr.charts.palettes.PlainPalette;
+import cbo.vizr.ChartProvider;
+import cbo.vizr.charts.ChartCreationException;
+import cbo.vizr.charts.ChartType;
+import cbo.vizr.charts.DataSet;
+import cbo.vizr.charts.RestChart;
+import cbo.vizr.charts.palettes.Color;
+import cbo.vizr.charts.palettes.PlainPalette;
 
 @Component
 public class CustomCharts implements ChartProvider {
